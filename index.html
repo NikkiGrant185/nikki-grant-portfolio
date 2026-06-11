@@ -1755,8 +1755,8 @@
                 </div>
                 <div class="project-content">
                     <span class="project-tag">UI Design</span>
-                    <h3>Creative Agency Website UI/UX Design</h3>
-                    <p>Designed a bold, modern website for CreativeCurrent, a creative direction subscription service offering branding, campaign, motion, and digital design support.</p>
+                    <h3>Creative Agency Website Design</h3>
+                    <p>Designed a bold, modern website for CreativeCurrent, campaign, motion, and digital design support.</p>
                     <a href="#" class="project-link">
                         View Project
                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1771,9 +1771,9 @@
                     </div>
                 </div>
                 <div class="project-content">
-                    <span class="project-tag">Mobile App</span>
-                    <h3>Mobile Banking App UI</h3>
-                    <p>Secure and user-friendly mobile banking application with intuitive transaction flows, account management, and financial insights dashboard.</p>
+                    <span class="project-tag">Web Design</span>
+                    <h3>Healthcare Website UI/UX Design</h3>
+                    <p>Designed a modern, user-friendly,responsive website for a multispecialty healthcare provider and doctors.</p>
                     <a href="#" class="project-link">
                         View Project
                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1840,8 +1840,8 @@
                 </div>
                 <div class="project-content">
                     <span class="project-tag">Mobile App</span>
-                    <h3>Yoga & Wellness Mobile App Design</h3>
-                    <p>A calming and user-friendly yoga app designed to help users explore guided sessions, create personalized routines, track their progress, and build healthier daily habits.</p>
+                    <h3>Yoga & Wellness Mobile Design</h3>
+                    <p>A calming yoga app designed to help users explore guided sessions, create personalized routines and build healthier daily habits.</p>
                     <a href="#" class="project-link">
                         View Project
                         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2078,8 +2078,8 @@
         // Smooth Scroll (guard against bare '#' and invalid selectors)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                // Skip if this is a data-folder button (modal trigger)
-                if (this.hasAttribute('data-folder')) {
+                // Ignore anchors used as project overlay buttons (don't scroll)
+                if (this.closest('.project-overlay') || this.hasAttribute('data-folder')) {
                     return;
                 }
                 e.preventDefault();
@@ -2244,16 +2244,12 @@
             }
         }
 
-        // Attach open handlers to all "View Case Study" buttons
+        // Disabled: prevent "View Case Study" from opening the modal
         document.querySelectorAll('.project-overlay .btn.btn-primary').forEach(btn => {
-            const folder = btn.getAttribute('data-folder');
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openCaseModal(e);
-                if (folder) {
-                    loadGalleryFromFolder(folder);
-                }
+                // Modal intentionally disabled — no action
             });
         });
 
